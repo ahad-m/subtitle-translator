@@ -7,7 +7,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         popup: path.resolve(__dirname, "src/popup/popup.html"),
-        offscreen: path.resolve(__dirname, "public/offscreen.html")
+        offscreen: path.resolve(__dirname, "public/offscreen.html"),
+        inject: path.resolve(__dirname, "src/content/inject.ts"),
+        serviceWorker: path.resolve(__dirname, "src/background/service-worker.ts")
       },
       output: {
         entryFileNames: "assets/[name].js"

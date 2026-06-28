@@ -14,17 +14,17 @@
     "<all_urls>"
   ],
   "background": {
-    "service_worker": "assets/service-worker.js",
-    "type": "module"
-  },
+  "service_worker": "assets/serviceWorker.js",
+  "type": "module"
+},
   "action": {
-    "default_popup": "assets/popup.html"
+    "default_popup": "src/popup/popup.html"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["assets/inject.js"],
-      "css": ["assets/overlay.css"],
+      "css": ["overlay.css"],
       "run_at": "document_idle"
     }
   ],
