@@ -1,22 +1,38 @@
 #subtitle-translator-overlay {
   position: fixed;
-  bottom: 10%;
   left: 50%;
+  bottom: 6%;
   transform: translateX(-50%);
-  z-index: 999999;
-  max-width: 80vw;
-  background: rgba(0, 0, 0, 0.72);
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 28px;
-  line-height: 1.5;
-  text-align: center;
+  z-index: 2147483647;
+  width: min(98vw, 1650px);
   pointer-events: none;
-  direction: rtl;
-  unicode-bidi: plaintext;
+  display: flex;
+  justify-content: center;
 }
 
 #subtitle-translator-text {
-  white-space: pre-wrap;
+  width: min(95vw, 1500px);
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 600;
+  text-align: center;
+  direction: rtl;
+  unicode-bidi: plaintext;
+  white-space: pre-line;
+  word-break: normal;
+  overflow-wrap: break-word;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+
+  min-height: calc(1.5em * 2 + 28px);
+  max-height: calc(1.5em * 2 + 28px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  pointer-events: auto;
+  scrollbar-width: thin;
 }

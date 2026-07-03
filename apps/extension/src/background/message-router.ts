@@ -1,11 +1,20 @@
+let activeTargetTabId: number | null = null;
+
+export function setActiveTargetTabId(tabId: number) {
+  activeTargetTabId = tabId;
+}
+
+export function clearActiveTargetTabId() {
+  activeTargetTabId = null;
+}
+
 export function broadcastSubtitle(text: string) {
-  chrome.tabs.query({}, (tabs) => {
-    for (const tab of tabs) {
-      if (!tab.id) continue;
-      chrome.tabs.sendMessage(tab.id, {
-        type: "SUBTITLE_DELTA",
-        text
-      });
-    }
+  if (!activeTargetTabId) {
+    return;
+  }
+
+  chrome.tabs.sendMessage(activeTargetTabId, {
+    type: "SUBTITLE_DELTA",
+    text
   });
 }

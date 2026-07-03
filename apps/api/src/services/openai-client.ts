@@ -12,14 +12,16 @@ export async function createTranslationClientSecret(targetLanguage: string) {
       },
       body: JSON.stringify({
         session: {
-          model: "gpt-realtime-translate",
-          audio: {
+            model: "gpt-realtime-translate",
+            audio: {
             output: {
-              language: targetLanguage
+                language: targetLanguage
             }
-          }
+            }
         }
-      })
+        })
+
+
     }
   );
 

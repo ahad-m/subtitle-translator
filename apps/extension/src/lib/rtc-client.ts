@@ -1,10 +1,8 @@
-import { broadcastSubtitle } from "../background/message-router";
-
-export async function createRealtimeTranslationConnection(clientSecret: string) {
-  const sourceStream = await navigator.mediaDevices.getUserMedia({
-    audio: true
-  });
-
+export async function createRealtimeTranslationConnection(
+  clientSecret: string,
+  sourceStream: MediaStream,
+  onTranscriptDelta: (text: string) => void
+) {
   const pc = new RTCPeerConnection();
   pc.addTrack(sourceStream.getAudioTracks()[0], sourceStream);
 
@@ -13,7 +11,7 @@ export async function createRealtimeTranslationConnection(clientSecret: string) 
     const event = JSON.parse(data);
 
     if (event.type === "session.output_transcript.delta") {
-      broadcastSubtitle(event.delta);
+      onTranscriptDelta(event.delta);
     }
   };
 
@@ -43,5 +41,8 @@ export async function createRealtimeTranslationConnection(clientSecret: string) 
     sdp: answer
   });
 
-  return pc;
+  return {
+    pc,
+    stream: sourceStream
+  };
 }

@@ -1,5 +1,8 @@
-export async function createBackendSession(input: { targetLanguage: string }) {
-  const response = await fetch("http://localhost:3001/v1/sessions", {
+export async function createBackendSession(
+  input: { targetLanguage: string },
+  apiBaseUrl: string
+) {
+  const response = await fetch(`${apiBaseUrl.replace(/\/$/, "")}/v1/sessions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
